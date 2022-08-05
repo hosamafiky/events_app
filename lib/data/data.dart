@@ -1,7 +1,7 @@
 import 'package:events_app/constants/strings.dart';
-import 'package:events_app/data/category_model.dart';
-import 'package:events_app/data/ticket_model.dart';
-import 'package:events_app/data/notification_model.dart';
+import 'package:events_app/data/models/category_model.dart';
+import 'package:events_app/data/models/ticket_model.dart';
+import 'package:events_app/data/models/notification_model.dart';
 import 'package:events_app/presentation/screens/home_screen.dart';
 import 'package:events_app/presentation/screens/profile_screen.dart';
 import 'package:events_app/presentation/widgets/onboard_page.dart';

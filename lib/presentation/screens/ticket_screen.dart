@@ -1,7 +1,7 @@
 import 'package:events_app/constants/functions.dart';
 import 'package:events_app/constants/palette.dart';
 import 'package:events_app/constants/style.dart';
-import 'package:events_app/data/ticket_model.dart';
+import 'package:events_app/data/models/ticket_model.dart';
 import 'package:events_app/presentation/screens/sheets/reserve_ticket_sheet.dart';
 import 'package:events_app/presentation/widgets/confirm_button.dart';
 import 'package:events_app/presentation/widgets/custom_bottom_sheet.dart';

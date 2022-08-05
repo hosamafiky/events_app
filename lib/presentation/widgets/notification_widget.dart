@@ -1,4 +1,4 @@
-import 'package:events_app/data/notification_model.dart';
+import 'package:events_app/data/models/notification_model.dart';
 import 'package:flutter/material.dart';
 
 class NotificationWidget extends StatelessWidget {

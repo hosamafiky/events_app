@@ -1,7 +1,7 @@
 import 'package:events_app/constants/functions.dart';
 import 'package:events_app/constants/palette.dart';
 import 'package:events_app/constants/style.dart';
-import 'package:events_app/data/ticket_model.dart';
+import 'package:events_app/data/models/ticket_model.dart';
 import 'package:events_app/presentation/screens/layout_screen.dart';
 import 'package:events_app/presentation/screens/ticket_screen.dart';
 import 'package:events_app/presentation/widgets/cancel_button.dart';

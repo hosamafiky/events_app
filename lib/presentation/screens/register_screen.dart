@@ -1,21 +1,33 @@
 import 'package:events_app/constants/functions.dart';
+import 'package:events_app/data/services/auth.dart';
 import 'package:events_app/presentation/screens/login_screen.dart';
 import 'package:events_app/presentation/widgets/custom_text_field.dart';
 import 'package:events_app/presentation/widgets/navigation_button.dart';
 import 'package:events_app/presentation/widgets/submit_button.dart';
 import 'package:flutter/material.dart';
 
-import 'activation_code_screen.dart';
-
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
 
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  final _formKey = GlobalKey<FormState>();
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final phoneController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confPasswordController = TextEditingController();
+
+  final authServices = AuthServices();
   @override
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
+        //resizeToAvoidBottomInset: false,
         body: Stack(
           children: [
             Container(
@@ -35,44 +47,62 @@ class RegisterScreen extends StatelessWidget {
               ),
               child: Center(
                 child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Image.asset(
-                        'assets/images/small_logo.png',
-                        width: 80.0,
-                      ),
-                      const SizedBox(height: 30.0),
-                      const CustomTextField(
-                        label: 'اسم المستخدم',
-                        icon: 'user',
-                      ),
-                      const SizedBox(height: 10.0),
-                      const CustomTextField(
-                        label: 'رقم الجوال',
-                        icon: 'phone',
-                      ),
-                      const SizedBox(height: 10.0),
-                      const CustomTextField(
-                        label: 'البريد الإلكتروني',
-                        icon: 'email',
-                      ),
-                      const SizedBox(height: 10.0),
-                      const CustomTextField(
-                        label: 'كلمة المرور',
-                        icon: 'lock',
-                      ),
-                      const SizedBox(height: 10.0),
-                      const CustomTextField(
-                        label: 'تأكيد كلمة المرور',
-                        icon: 'lock',
-                      ),
-                      const SizedBox(height: 20.0),
-                      SubmitButton(
-                        text: 'تسجيل',
-                        onPressed: () =>
-                            nextPage(context, const ActivationCodeScreen()),
-                      ),
-                    ],
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          'assets/images/small_logo.png',
+                          width: 80.0,
+                        ),
+                        const SizedBox(height: 30.0),
+                        CustomTextField(
+                          controller: nameController,
+                          label: 'اسم المستخدم',
+                          icon: 'user',
+                        ),
+                        const SizedBox(height: 10.0),
+                        CustomTextField(
+                          controller: phoneController,
+                          label: 'رقم الجوال',
+                          icon: 'phone',
+                        ),
+                        const SizedBox(height: 10.0),
+                        CustomTextField(
+                          controller: emailController,
+                          label: 'البريد الإلكتروني',
+                          icon: 'email',
+                        ),
+                        const SizedBox(height: 10.0),
+                        CustomTextField(
+                          controller: passwordController,
+                          label: 'كلمة المرور',
+                          icon: 'lock',
+                        ),
+                        const SizedBox(height: 10.0),
+                        CustomTextField(
+                          controller: confPasswordController,
+                          label: 'تأكيد كلمة المرور',
+                          icon: 'lock',
+                        ),
+                        const SizedBox(height: 20.0),
+                        SubmitButton(
+                          text: 'تسجيل',
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              authServices.register(
+                                context,
+                                name: nameController.text,
+                                email: emailController.text,
+                                phone: phoneController.text,
+                                password: passwordController.text,
+                                confPassword: confPasswordController.text,
+                              );
+                            }
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

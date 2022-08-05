@@ -11,6 +11,7 @@ class CustomTextField extends StatefulWidget {
     this.isWhite = false,
     this.hintText,
     this.notWhite = false,
+    this.controller,
   }) : super(key: key);
 
   final String label;
@@ -19,6 +20,7 @@ class CustomTextField extends StatefulWidget {
   final bool isWhite;
   final String? hintText;
   final bool notWhite;
+  final TextEditingController? controller;
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
 }
@@ -43,12 +45,19 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   : 'white';
         });
       },
-      child: TextField(
+      child: TextFormField(
+        controller: widget.controller,
         style: const TextStyle(
           color: Colors.white,
           fontSize: 14.0,
         ),
         onTap: () {},
+        validator: (value) {
+          if (value!.isEmpty) {
+            return 'حقل ${widget.hintText ?? widget.label} مطلوب.';
+          }
+          return null;
+        },
         obscureText: widget.isPassword,
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.symmetric(

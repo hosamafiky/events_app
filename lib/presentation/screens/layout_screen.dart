@@ -6,6 +6,7 @@ import 'package:events_app/presentation/screens/sheets/notifications_sheet.dart'
 import 'package:events_app/presentation/screens/sheets/saved_sheet_screen.dart';
 import 'package:events_app/presentation/screens/sheets/search_sheet_screen.dart';
 import 'package:events_app/presentation/screens/sheets/tickets_list_screen.dart';
+import 'package:events_app/presentation/widgets/custom_bottom_sheet.dart';
 import 'package:events_app/presentation/widgets/navigation_drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -148,23 +149,20 @@ class _AppLayoutState extends State<AppLayout> {
       switch (index) {
         case 1:
           {
-            Scaffold.of(context)
-                .showBottomSheet(
-                  (context) => const TicketsList(),
-                  enableDrag: true,
-                  backgroundColor: Colors.white,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.vertical(
-                      top: Radius.circular(50.0),
-                    ),
-                  ),
-                )
-                .closed
-                .then((value) {
-              setState(() {
-                isTicketsBottomSheetOpen = false;
-              });
-            });
+            showModalCustomBottomSheet(
+              context: context,
+              builder: (context) => const TicketsList(),
+              enableDrag: true,
+              //useRootNavigator: true,
+              backgroundColor: Colors.white,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(50.0),
+                ),
+              ),
+            ).whenComplete(() => setState(() {
+                  isTicketsBottomSheetOpen = false;
+                }));
             setState(() {
               isTicketsBottomSheetOpen = true;
             });

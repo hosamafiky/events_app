@@ -1,5 +1,5 @@
 import 'package:events_app/constants/functions.dart';
-import 'package:events_app/data/ticket_model.dart';
+import 'package:events_app/data/models/ticket_model.dart';
 import 'package:events_app/presentation/screens/payment_screen.dart';
 import 'package:flutter/material.dart';
 
